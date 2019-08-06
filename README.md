@@ -1,29 +1,5 @@
-# vue-payment
+# The F2E 2019 第四關 - 線上支付 Payment
 
-## Project setup
-```
-npm install
-```
+2019 六角學院 [TheF2E 前端修練精神時光屋](https://challenge.thef2e.com/) 活動。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+**尚未完成**
