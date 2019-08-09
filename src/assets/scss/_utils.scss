@@ -63,6 +63,22 @@ $color-red: #BA1F0B;
     font-family: 'Font Awesome 5 Free';
 }
 
+// Material Icons
+@mixin material {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    text-align: center;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+}
+
 // Hide Text
 @mixin hide-text {
     font-size: 0rem;

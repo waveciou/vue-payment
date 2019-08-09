@@ -3,13 +3,13 @@
         <div class="header">
             <div class="wrap">
                 <div class="paymentStatus">
-                    <div class="paymentStatus-item">
+                    <div class="paymentStatus-item" :class="{'current': routerIndex === 'shipping'}">
                         <div class="paymentStatus-title">選擇運送方式<span>SHIPPING</span></div>
                     </div>
-                    <div class="paymentStatus-item">
+                    <div class="paymentStatus-item" :class="{'current': routerIndex === 'payment'}">
                         <div class="paymentStatus-title">選擇付款方式<span>PAYMENT</span></div>
                     </div>
-                    <div class="paymentStatus-item">
+                    <div class="paymentStatus-item" :class="{'current': routerIndex === 'complete'}">
                         <div class="paymentStatus-title">付款完成<span>COMPLETE</span></div>
                     </div>
                 </div>
@@ -17,7 +17,9 @@
         </div>
         <div class="content">
             <div class="wrap">
-                <router-view :product="product" :amount="amount" @checkAmount="computeAmount" />
+                <transition name="fade" mode="out-in">
+                    <router-view :product="product" :amount="amount" :stepchecked="stepchecked" @checkAmount="computeAmount" />
+                </transition>
             </div>
         </div>
     </div>
@@ -55,11 +57,16 @@
                 ],
                 amount: {
                     receive: {
-                        type: '',
+                        type: 'N',
                         price: 0
                     },
                     total: 0
-                }
+                },
+                stepchecked: {
+                    shipping: false,
+                    payment: false
+                },
+                routerIndex: ''
             }
         },
         components: {
@@ -71,20 +78,26 @@
 
         },
         mounted() {
-
+            if(this.stepchecked.shipping === false) {
+                this.$router.replace({path:'shipping'});
+            }
         },
         methods: {
             computeAmount(obj) {
                 this.amount.receive.type = obj.receive.type;
                 this.amount.receive.price = obj.receive.price;
                 this.amount.total = obj.total;
+
+                this.stepchecked.shipping = true;
             }
         },
         computed: {
 
         },
         watch: {
-
+            $route(to, from) {
+                this.routerIndex = to.name;
+            }
         }
     }
 </script>
@@ -104,6 +117,12 @@
 
     .paymentStatus-item {
         counter-increment: payment-status;
+        opacity: 0.5;
+
+        &.current {
+            opacity: 1;
+        }
+
         &::before {
             content: counter(payment-status);
             width: 50px;

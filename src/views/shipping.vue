@@ -10,15 +10,15 @@
                         <th data-class="expand">商品名稱</th>
                         <th data-hide="phone,tablet">單價</th>
                         <th data-hide="phone,tablet">數量</th>
-                        <th data-hide="phone,tablet">操作</th>
+                        <th data-hide="phone,tablet">備註</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in product" :key="index">
                         <td>{{item.name}}</td>
-                        <td>{{item.price}}</td>
+                        <td>NT. {{item.price}}</td>
                         <td>{{item.number}}</td>
-                        <td>內文</td>
+                        <td>－</td>
                     </tr>
                 </tbody>
             </table>
@@ -40,11 +40,11 @@
                                 </select>
                             </div>
                         </td>
-                        <td>{{ this.receivePrice }}</td>
+                        <td>NT. {{ this.receivePrice }}</td>
                     </tr>
                 </tbody>
             </table>
-            <div class="totalPrice">總價：{{ this.totalPrice }}</div>
+            <div class="totalPrice">總價：NT. {{ this.totalPrice }}</div>
         </section>
 
         <div class="controlbar">
@@ -77,14 +77,13 @@
             }
         },
         name: 'shipping',
-        components: {
-
-        },
-        props: ['product'],
+        props: ['product', 'amount', 'stepchecked'],
         created() {
 
         },
         mounted() {
+            this.receive.selected = this.amount.receive.type;
+
             $('.footable').footable({
                 calculateWidthOverride: function calculateWidthOverride() {
                     return {
@@ -117,7 +116,7 @@
             receivePrice() {
                 // 計算運費
                 if(this.receive.selected === 'N') {
-                    return '-'
+                    return '－'
                 } else {
                     let currentItem = this.receive.option.filter((item) => {
                         return item.name === this.receive.selected;
@@ -128,7 +127,7 @@
             totalPrice() {
                 // 計算總價
                 if(this.receive.selected === 'N') {
-                    return '-'
+                    return '－'
                 } else {
                     let productPrice = this.product.reduce((total, current) => {
                         return total + (current.price * current.number)
