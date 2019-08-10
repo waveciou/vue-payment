@@ -512,26 +512,47 @@ import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
     /* Heading */
     .heading {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include min-width(1025px) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .heading-caption {
+        margin-bottom: 2rem;
+        @include min-width(1025px) {
+            margin-bottom: 0px;
+        }
     }
 
     .paymentSelect {
-        width: 600px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+        @include min-width(768px) {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        @include min-width(1025px) {
+            width: 600px;
+            justify-content: space-around;
+            align-items: center;
+        }
     }
 
     .paymentSelect-btn {
-        width: 180px;
+        width: 100%;
         display: block;
         padding: 15px 10px;
+        margin-bottom: 1rem;
         border-radius: 5px;
         text-align: center;
         background-color: $color-gray-light;
         transition: all 0.2s ease-out;
+
+        @include min-width(768px) {
+            width: 180px;
+            margin-bottom: 0px;
+        }
 
         > span {
             display: block;
@@ -540,14 +561,19 @@ import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
 
         &::before {
             content: '';
-            width: 60px;
-            height: 80px;
+            width: 50px;
+            height: 70px;
             display: block;
             margin: auto;
             background: {
                 repeat: no-repeat;
                 position: center;
                 size: contain;
+            }
+
+            @include min-width(768px) {
+                width: 60px;
+                height: 80px;
             }
         }
 

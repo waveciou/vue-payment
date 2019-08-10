@@ -4,13 +4,12 @@
             <h2 class="title">訂單資訊</h2>
             <div class="subtitle">ORDER INFORMATION</div>
 
-            <table class="footable">
+            <table class="productTable">
                 <thead>
                     <tr>
-                        <th data-class="expand">商品名稱</th>
-                        <th data-hide="phone,tablet">單價</th>
-                        <th data-hide="phone,tablet">數量</th>
-                        <th data-hide="phone,tablet">備註</th>
+                        <th>商品名稱</th>
+                        <th>單價</th>
+                        <th>數量</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,7 +17,6 @@
                         <td>{{item.name}}</td>
                         <td>NT. {{item.price}}</td>
                         <td>{{item.number}}</td>
-                        <td>－</td>
                     </tr>
                 </tbody>
             </table>
@@ -83,14 +81,6 @@
         },
         mounted() {
             this.receive.selected = this.amount.receive.type;
-
-            $('.footable').footable({
-                calculateWidthOverride: function calculateWidthOverride() {
-                    return {
-                        width: $(window).width()
-                    };
-                }
-            });
         },
         methods: {
             goToNextStep() {
@@ -178,15 +168,69 @@
         }
     }
 
-    /* Footable */
-    .footable {
-        .footable-row-detail-name {
-            font-weight: 500;
-            padding-bottom: 1rem;
+    .productTable {
+        thead {
+            display: none;
+            @include min-width(768px) {
+                display: table-header-group;
+            }
         }
 
-        .footable-row-detail-value {
-            padding-bottom: 1rem;
+        tr {
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            @include min-width(768px) {
+                width: auto;
+                display: table-row;
+            }
+
+            td {
+                width: 50%;
+                display: block;
+                float: left;
+                text-align: left;
+
+                &:first-child {
+                    width: 100%;
+                    float: none;
+                    background-color: $color-gray-light;
+                    color: $color-gray-dark;
+                    @include min-width(768px) {
+                        width: auto;
+                        background-color: transparent;
+                    }
+                }
+
+                &:nth-child(2) {
+                    &::before {
+                        content: '單價：';
+                        font-weight: bold;
+                    }
+                }
+                
+
+                &:nth-child(3) {
+                    text-align: right;
+                    &::before {
+                        content: '數量：';
+                        font-weight: bold;
+                    }
+                    @include min-width(768px) {
+                        text-align: center;
+                    }
+                }
+
+                @include min-width(768px) {
+                    width: auto;
+                    display: table-cell;
+                    float: none;
+                    text-align: center;
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
         }
     }
 
@@ -194,8 +238,11 @@
     .receiveTable {
         th, td {
             &:first-child {
-                width: 80%;
+                width: 60%;
                 text-align: left;
+                @include min-width(768px) {
+                    width: 80%;
+                }
             }
         }
     }

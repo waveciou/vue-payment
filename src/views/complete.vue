@@ -77,7 +77,9 @@
 
     .desc-text {
         line-height: 1.6em;
-        padding-left: 70px;
+        @include min-width(768px) {
+            padding-left: 70px;
+        }
     }
 
     /* Order List */
@@ -90,14 +92,28 @@
         letter-spacing: 1px;
 
         dt, dd {
-            display: inline-block;
-            vertical-align: top;
             padding: 10px;
+            padding: {
+                top: 10px;
+                bottom: 10px;
+                left: 20px;
+                right: 10px;
+            };
+            @include min-width(768px) {
+                display: inline-block;
+                vertical-align: top;
+                padding-left: 10px;
+            }
         }
 
         dt {
-            width: 150px;
+            padding-left: 0px;
             font-weight: bold;
+            color: $color-blue-dark;
+            @include min-width(768px) {
+                width: 150px;
+                padding-left: 10px;
+            }
         }
     }
 </style>

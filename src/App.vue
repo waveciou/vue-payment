@@ -113,11 +113,14 @@
 
     .paymentStatus {
         width: 100%;
-        height: 180px;
+        height: 150px;
         display: flex;
         justify-content: space-around;
         align-items: center;
         counter-reset: payment-status;
+        @include min-width(768px) {
+            height: 180px;
+        }
     }
 
     .paymentStatus-item {
@@ -144,6 +147,13 @@
             border-radius: 100%;
             background-color: $color-blue-dark;
             color: $color-white;
+
+            @include min-width(768px) {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+            }
         }
     }
 
@@ -151,13 +161,17 @@
         text-align: center;
         line-height: 1.4em;
         letter-spacing: 1px;
-        font-size: 18px;
+        font-size: 10px;
         font-weight: bold;
         color: $color-blue-dark;
         > span {
             display: block;
             color: inherit;
             font-size: 85%;
+        }
+
+        @include min-width(768px) {
+            font-size: 18px;
         }
     }
 </style>
