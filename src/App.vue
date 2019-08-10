@@ -102,6 +102,7 @@
         watch: {
             $route(to, from) {
                 this.routerIndex = to.name;
+                window.scrollTo(0, 0);
             }
         }
     }
@@ -124,6 +125,7 @@
     }
 
     .paymentStatus-item {
+        width: 33.33%;
         counter-increment: payment-status;
         opacity: 0.5;
 
