@@ -97,7 +97,7 @@
                 if(this.receive.selected === 'N') {
                     window.alert('請選擇運送方式');
                 } else {
-                    let promptText = `確認金額為：${this.totalPrice}？`;
+                    let promptText = `確認金額為：${this.totalPrice}`;
                     let amount = {
                         receive: {
                             type: this.receive.selected,
