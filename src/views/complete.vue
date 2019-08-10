@@ -23,6 +23,7 @@
             }
         },
         name: 'complete',
+        props: ['product', 'amount', 'order'],
         created() {
 
         },

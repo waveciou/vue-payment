@@ -18,7 +18,7 @@
         <div class="content">
             <div class="wrap">
                 <transition name="fade" mode="out-in">
-                    <router-view :product="product" :amount="amount" :stepchecked="stepchecked" @checkAmount="computeAmount" />
+                    <router-view :product="product" :amount="amount" :order="order" :stepchecked="stepchecked" @checkAmount="computeAmount" @checkOrder="computeOrder" />
                 </transition>
             </div>
         </div>
@@ -62,6 +62,7 @@
                     },
                     total: 0
                 },
+                order: [],
                 stepchecked: {
                     shipping: false,
                     payment: false
@@ -78,7 +79,7 @@
 
         },
         mounted() {
-            if(this.stepchecked.shipping === false) {
+            if(this.stepchecked.shipping === false || this.stepchecked.payment === false) {
                 this.$router.replace({path:'shipping'});
             }
         },
@@ -89,6 +90,10 @@
                 this.amount.total = obj.total;
 
                 this.stepchecked.shipping = true;
+            },
+            computeOrder(arr) {
+                this.order = arr;
+                this.stepchecked.payment = true;
             }
         },
         computed: {
