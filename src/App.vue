@@ -133,26 +133,26 @@
 
         &::before {
             content: counter(payment-status);
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             display: block;
             margin: {
                 left: auto;
                 right: auto;
                 bottom: 10px;
             };
-            line-height: 50px;
-            font-size: 24px;
+            line-height: 40px;
+            font-size: 18px;
             text-align: center;
             border-radius: 100%;
             background-color: $color-blue-dark;
             color: $color-white;
 
             @include min-width(768px) {
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
-                font-size: 18px;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 24px;
             }
         }
     }
