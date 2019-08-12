@@ -15,16 +15,16 @@
                     <tbody>
                         <tr v-for="(item, index) in product" :key="index">
                             <td>{{ item.name }} x {{ item.number }}</td>
-                            <td>{{ item.price * item.number }}</td>
+                            <td>{{ toCurrency(item.number * item.price) }}</td>
                         </tr>
                         <tr>
                             <td>{{ amount.receive.type }}</td>
-                            <td>{{ amount.receive.price }}</td>
+                            <td>{{ this.toCurrency(amount.receive.price) }}</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div class="totalPrice">NT. {{ amount.total }}</div>
+                <div class="totalPrice">NT. {{ this.toCurrency(amount.total) }}</div>
             </section>
         </div>
         <div class="container-article">
@@ -279,12 +279,6 @@ import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
         },
         name: 'payment',
         props: ['product', 'amount'],
-        created() {
-
-        },
-        mounted() {
-
-        },
         methods: {
             selectPayment(value) {
                 this.paymentCurrent = value;
@@ -470,14 +464,17 @@ import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
                     this.$emit('checkOrder', orderList);
                     this.goToNextStep();
                 }
-            }
+            },
+            toCurrency(num) {
+                // 轉換成貨幣格式
+                num = num.toString();
+                let reg = /(-?\d+)(\d{3})/;
+                while(reg.test(num)) {
+                    num = num.replace(reg, '$1,$2');
+                }
+                return num;
+            },
         },
-        computed: {
-
-        },
-        watch: {
-
-        }
     }
 </script>
 
@@ -629,5 +626,4 @@ import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
             }
         }
     }
-
 </style>

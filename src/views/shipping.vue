@@ -15,7 +15,7 @@
                 <tbody>
                     <tr v-for="(item, index) in product" :key="index">
                         <td>{{item.name}}</td>
-                        <td>NT. {{item.price}}</td>
+                        <td>NT. {{ toCurrency(item.price) }}</td>
                         <td>{{item.number}}</td>
                     </tr>
                 </tbody>
@@ -38,11 +38,11 @@
                                 </select>
                             </div>
                         </td>
-                        <td>NT. {{ this.receivePrice }}</td>
+                        <td>NT. {{ toCurrency(this.receivePrice) }}</td>
                     </tr>
                 </tbody>
             </table>
-            <div class="totalPrice">總價：NT. {{ this.totalPrice }}</div>
+            <div class="totalPrice">總價：NT. {{ toCurrency(this.totalPrice) }}</div>
         </section>
 
         <div class="controlbar">
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { write } from 'fs';
     export default {
         data() {
             return {
@@ -76,9 +77,6 @@
         },
         name: 'shipping',
         props: ['product', 'amount', 'stepchecked'],
-        created() {
-
-        },
         mounted() {
             this.receive.selected = this.amount.receive.type;
         },
@@ -87,7 +85,7 @@
                 if(this.receive.selected === 'N') {
                     window.alert('請選擇運送方式');
                 } else {
-                    let promptText = `確認金額為：${this.totalPrice}`;
+                    let promptText = `確認金額為：${this.toCurrency(this.totalPrice)}`;
                     let amount = {
                         receive: {
                             type: this.receive.selected,
@@ -100,6 +98,15 @@
                         this.$router.replace({path:'payment'});
                     }
                 }
+            },
+            toCurrency(num) {
+                // 轉換成貨幣格式
+                num = num.toString();
+                let reg = /(-?\d+)(\d{3})/;
+                while(reg.test(num)) {
+                    num = num.replace(reg, '$1,$2');
+                }
+                return num;
             }
         },
         computed: {
@@ -127,9 +134,6 @@
                 }
             }
         },
-        watch: {
-
-        }
     }
 </script>
 

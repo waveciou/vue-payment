@@ -19,7 +19,7 @@
                 </dl>
                 <dl>
                     <dt>實付金額</dt>
-                    <dd>{{ amount.total }}</dd>
+                    <dd>{{ this.toCurrency(amount.total) }}</dd>
                 </dl>
             </div>
         </section>
@@ -38,23 +38,20 @@
         },
         name: 'complete',
         props: ['product', 'amount', 'order'],
-        created() {
-
-        },
-        mounted() {
-
-        },
         methods: {
             goToNextStep() {
                 this.$router.replace({path:'shipping'});
-            }
+            },
+            toCurrency(num) {
+                // 轉換成貨幣格式
+                num = num.toString();
+                let reg = /(-?\d+)(\d{3})/;
+                while(reg.test(num)) {
+                    num = num.replace(reg, '$1,$2');
+                }
+                return num;
+            },
         },
-        computed: {
-
-        },
-        watch: {
-
-        }
     }
 </script>
 

@@ -75,9 +75,6 @@
             'payment': payment,
             'complete': complete
         },
-        created() {
-
-        },
         mounted() {
             if(this.stepchecked.shipping === false || this.stepchecked.payment === false) {
                 this.$router.replace({path:'shipping'});
@@ -95,9 +92,6 @@
                 this.order = arr;
                 this.stepchecked.payment = true;
             }
-        },
-        computed: {
-
         },
         watch: {
             $route(to, from) {
