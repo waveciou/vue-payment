@@ -4,7 +4,13 @@
 
 ## DEMO
 
-- [網站連結](https://waveciou.github.io/vue-payment/dist/)
+[網站連結](https://waveciou.github.io/vue-payment/dist/)
+
+一個簡易的線上支付交易流程介面範例，內容包含：
+
+- 使用 Vue-router 製作步驟頁面切換
+- 利用正則表達式，驗證表單欄位內容
+- 商品資料的前端處理
 
 ## DESIGN
 
@@ -19,3 +25,4 @@
 - vue router
 - JavaScript ES6
 - SCSS
+- RWD
