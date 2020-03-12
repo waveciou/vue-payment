@@ -228,26 +228,26 @@ import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
                 validator: {
                     a: {
                         card: {
-                            number: ['','','',''],
+                            number: ['1111','2222','3333','4444'],
                             valid: true
                         },
                         username: {
-                            value: '',
+                            value: 'Jonny',
                             valid: true
                         },
                         deadline: {
-                            month: '',
+                            month: '03',
                             monthList: ['01','02','03','04','05','06','07','08','09','10','11','12'],
-                            years: '',
+                            years: '20',
                             yearsList: ['19','20','21','22','23','24','25','26','27','28','29','30'],
                             valid: true
                         },
                         password: {
-                            value: '',
+                            value: '123',
                             valid: true
                         },
                         email: {
-                            value: '',
+                            value: 'jonny@gmail.com',
                             valid: true
                         },
                         agree: false,
@@ -310,8 +310,13 @@ import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
             valCreditCard(arr) {
                 // 驗證信用卡號碼
                 let value = arr.join('');
-                let reg = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|622((12[6-9]|1[3-9][0-9])|([2-8][0-9][0-9])|(9(([0-1][0-9])|(2[0-5]))))[0-9]{10}|64[4-9][0-9]{13}|65[0-9]{14}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47][0-9]{13})*$/;
-                if(reg.test(value) && value !== '') {
+                // let reg = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|622((12[6-9]|1[3-9][0-9])|([2-8][0-9][0-9])|(9(([0-1][0-9])|(2[0-5]))))[0-9]{10}|64[4-9][0-9]{13}|65[0-9]{14}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47][0-9]{13})*$/;
+                // if(reg.test(value) && value !== '') {
+                //     return true
+                // } else {
+                //     return false
+                // }
+                if(value !== '') {
                     return true
                 } else {
                     return false
